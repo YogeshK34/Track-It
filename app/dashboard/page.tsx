@@ -1,5 +1,3 @@
-// "use client";
-
 import { Card } from "@/components/ui/card";
 import ExpenseOverview from "@/components/ExpenseOverview";
 import { TransactionList } from "@/components/TransactionList";
@@ -9,7 +7,6 @@ import { SavingsOverview } from "@/components/SavingsOverview";
 import { ExpenseProvider } from "@/context/ExpenseContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { DashboardNew } from "@/app/dashboard/dashboard";
-// import { DashboardNew } from "./dashboard";
 
 export default function Dashboard() {
   return (

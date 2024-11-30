@@ -1,6 +1,4 @@
 "use client";
-
-import { ResponsivePie } from "@neco-dev/next-recharts";
 import { Cell, Pie, PieChart } from "recharts";
 
 interface ChartProps {
@@ -51,10 +49,7 @@ export function Chart({ data, colors }: ChartProps) {
           dataKey="value"
         >
           {data.map((_, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={`hsl(var(--${colors[index]}))`}
-            />
+            <Cell key={`cell-${index}`} fill={`hsl(var(--${colors[index]}))`} />
           ))}
         </Pie>
       </PieChart>

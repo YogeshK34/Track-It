@@ -1,3 +1,4 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import ExpenseOverview from "@/components/ExpenseOverview";
 import { TransactionList } from "@/components/TransactionList";

@@ -7,7 +7,7 @@ import { BudgetOverview } from "@/components/BudgetOverview";
 import { SavingsOverview } from "@/components/SavingsOverview";
 import { ExpenseProvider } from "@/context/ExpenseContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { DashboardNew } from "@/app/dashboard/dashboard";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Dashboard() {
   return (
@@ -15,7 +15,10 @@ export default function Dashboard() {
       <ExpenseProvider>
         <main className="min-h-screen bg-background py-8">
           <div className="container mx-auto px-4">
-            <DashboardNew></DashboardNew>
+            <div className="flex justify-between items-center mb-8">
+              <div className=" text-2xl font-extrabold ">Dashboard</div>
+              <ThemeToggle />
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-8 space-y-8">
                 <ExpenseOverview />

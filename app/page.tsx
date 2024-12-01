@@ -109,7 +109,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-background/80 backdrop-blur-lg">
+      <footer className="border-t border-border/40 bg-backgr;ound/80 backdrop-blur-lg">
         <Footer />
       </footer>
     </div>

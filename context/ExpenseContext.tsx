@@ -18,7 +18,7 @@ interface ExpenseContextType {
   deleteTransaction: (id: string) => void;
   updateCategory: (category: Category) => void;
   allocateToSavings: (amount: number) => void;
-  useSavings: (amount: number) => void; // Add this line
+  useSavings: (amount: number) => void;
 }
 
 const ExpenseContext = createContext<ExpenseContextType | undefined>(undefined);

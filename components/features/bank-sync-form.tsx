@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,86 +10,57 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { CreditCard } from "lucide-react";
+
+const banks = [
+  { name: "Chase", icon: "🏦" },
+  { name: "Bank of America", icon: "🏛️" },
+  { name: "Wells Fargo", icon: "💰" },
+  { name: "Citibank", icon: "🏢" },
+  { name: "Other", icon: "🏪" },
+];
 
 export function BankSyncForm() {
-  const [formData, setFormData] = useState({
-    email: "",
-    phone: "",
-    business: "",
-    message: "",
-  });
-
   return (
-    <div className="p-8">
-      <div className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone number</Label>
-          <Input
-            id="phone"
-            type="tel"
-            placeholder="Enter your phone number"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="business">Your bank</Label>
-          <Select
-            value={formData.business}
-            onValueChange={(value) =>
-              setFormData({ ...formData, business: value })
-            }
-          >
-            <SelectTrigger id="business">
-              <SelectValue placeholder="Select your bank" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="chase">Chase</SelectItem>
-              <SelectItem value="bankofamerica">Bank of America</SelectItem>
-              <SelectItem value="wellsfargo">Wells Fargo</SelectItem>
-              <SelectItem value="citibank">Citibank</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="message">Additional information</Label>
-          <Textarea
-            id="message"
-            placeholder="Any specific requirements or questions?"
-            value={formData.message}
-            onChange={(e) =>
-              setFormData({ ...formData, message: e.target.value })
-            }
-          />
-        </div>
-
-        <Button className="w-full" size="lg">
-          Connect Securely
-        </Button>
-
-        <p className="text-sm text-center text-muted-foreground mt-4">
-          Your data is encrypted and secure. We never store your banking
-          credentials.
-        </p>
+    <div className="bg-white p-6 rounded-xl">
+      <div className="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+        <h2 className="text-2xl font-bold mb-4">Real-time Bank Sync</h2>
+        <form className="space-y-4">
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="Enter your email" />
+          </div>
+          <div>
+            <Label htmlFor="number">Phone Number</Label>
+            <Input id="number" type="number" placeholder="Enter your number" />
+          </div>
+          <div>
+            <Label htmlFor="bank">Your bank</Label>
+            <Select>
+              <SelectTrigger id="bank">
+                <SelectValue placeholder="Select your bank" />
+              </SelectTrigger>
+              <SelectContent>
+                {banks.map((bank) => (
+                  <SelectItem key={bank.name} value={bank.name.toLowerCase()}>
+                    <div className="flex items-center">
+                      <span className="mr-2">{bank.icon}</span>
+                      {bank.name}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button className="w-full" size="lg">
+            <CreditCard className="w-4 h-4 mr-2" />
+            Connect Securely
+          </Button>
+          <p className="text-xs text-center text-muted-foreground mt-2">
+            Your data is encrypted and secure. We never store your banking
+            credentials.
+          </p>
+        </form>
       </div>
     </div>
   );

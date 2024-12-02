@@ -1,69 +1,81 @@
+import { Button } from "@/components/ui/button";
 import { SmartBudgeting } from "./smart-budgeting";
 import { BankSyncForm } from "./bank-sync-form";
 import { SmartReceiptScanningForm } from "./smart-receipt-form";
 
-export const features = [
+const features = [
   {
     id: "receipt",
     title: "Smart Receipt Scanning",
     description:
-      "Instantly capture and process receipts with our AI-powered scanner.",
+      "Capture receipts instantly with our AI-powered scanner. No more manual data entry or lost receipts.",
     component: SmartReceiptScanningForm,
   },
   {
     id: "budget",
-    title: "Smart Budgeting",
+    title: "Intelligent Budgeting",
     description:
-      "Track, analyze, and optimize your spending with intelligent insights.",
+      "Get personalized insights and automated categorization. Make smarter financial decisions with real-time tracking.",
     component: SmartBudgeting,
   },
   {
     id: "bank",
-    title: "Real-time Bank Sync",
+    title: "Secure Bank Integration",
     description:
-      "Securely connect your accounts for up-to-the-minute financial data.",
+      "Connect your accounts securely for real-time synchronization. Your data is always protected and encrypted.",
     component: BankSyncForm,
   },
 ];
 
 export default function Features() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-12">
-          Powerful Financial Features
-        </h1>
-        <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-          Explore our suite of tools designed to simplify your financial
-          management
-        </p>
+    <div className="bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        {/* Hero Section */}
+        <div className="text-center mb-20">
+          <h1 className="text-5xl font-bold tracking-tight text-gray-900 mb-6">
+            The easiest way to manage your finances
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Track expenses, scan receipts, and manage your budget with our
+            powerful financial tools. No financial expertise required.
+          </p>
+          <Button className="mt-8 px-8 py-6 text-lg rounded-full bg-gray-900 hover:bg-gray-800">
+            Get started for free
+          </Button>
+        </div>
 
-        {features.map((feature, index) => (
-          <div
-            key="id"
-            className={`flex flex-col lg:flex-row items-center ${
-              index % 2 === 0 ? "lg:flex-row-reverse" : ""
-            }`}
-          >
-            <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <feature.component />
+        {/* Features */}
+        <div className="space-y-32">
+          {features.map((feature, index) => (
+            <div
+              key={feature.id}
+              className={`flex flex-col gap-16 items-center lg:items-start lg:gap-8 ${
+                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              }`}
+            >
+              {/* Text Content */}
+              <div className="w-full lg:w-5/12 space-y-6 text-center lg:text-left lg:pt-20">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                  {feature.title}
+                </h2>
+                <p className="text-xl leading-relaxed text-gray-600">
+                  {feature.description}
+                </p>
+                <Button variant="outline" className="rounded-full px-8">
+                  Learn more
+                </Button>
+              </div>
+
+              {/* Feature Demo */}
+              <div className="w-full lg:w-7/12">
+                <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border border-gray-100">
+                  <feature.component />
+                </div>
               </div>
             </div>
-
-            <div className="w-full lg:w-1/2 px-4 flex flex-col justify-center text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                {feature.title}
-              </h2>
-              <p className="text-xl text-gray-600 mb-6">
-                {feature.description}
-              </p>
-              <button className="bg- text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500">
-                Learn More
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

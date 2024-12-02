@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,58 +10,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Upload } from "lucide-react";
-
-interface FormData {
-  receiptImage: File | null;
-  merchantName: string;
-  amount: string;
-  date: string;
-  category: string;
-  notes: string;
-}
+import {
+  Upload,
+  ShoppingCart,
+  Car,
+  Film,
+  Zap,
+  MoreHorizontal,
+} from "lucide-react";
 
 export function SmartReceiptScanningForm() {
-  const [formData, setFormData] = useState<FormData>({
-    receiptImage: null,
-    merchantName: "",
-    amount: "",
-    date: "",
-    category: "",
-    notes: "",
-  });
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setFormData({ ...formData, receiptImage: file });
-    }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("Form submitted:", formData);
-  };
-
   return (
-    <div className="p-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="receiptImage">Upload Receipt Image</Label>
+    <div className="bg-white p-6 rounded-xl">
+      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl">
+        <h2 className="text-2xl font-bold mb-4">Smart Receipt Scanning</h2>
+        <form className="space-y-4">
           <div className="flex items-center justify-center w-full">
             <label
               htmlFor="receiptImage"
-              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-white/80 hover:bg-white/90"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <Upload className="w-8 h-8 mb-4 text-gray-500" />
-                <p className="mb-2 text-sm text-gray-500">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
-                </p>
-                <p className="text-xs text-gray-500">
-                  PNG, JPG or GIF (MAX. 800x400px)
+                <Upload className="w-8 h-8 mb-2 text-gray-500" />
+                <p className="text-sm text-gray-500">
+                  Click to upload or drag and drop
                 </p>
               </div>
               <Input
@@ -70,85 +41,69 @@ export function SmartReceiptScanningForm() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={handleFileChange}
               />
             </label>
           </div>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="merchantName">Merchant Name</Label>
-          <Input
-            id="merchantName"
-            placeholder="Enter merchant name"
-            value={formData.merchantName}
-            onChange={(e) =>
-              setFormData({ ...formData, merchantName: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="amount">Amount</Label>
-          <Input
-            id="amount"
-            placeholder="Enter amount"
-            type="number"
-            step="0.01"
-            value={formData.amount}
-            onChange={(e) =>
-              setFormData({ ...formData, amount: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="date">Date</Label>
-          <Input
-            id="date"
-            type="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="category">Category</Label>
-          <Select
-            value={formData.category}
-            onValueChange={(value) =>
-              setFormData({ ...formData, category: value })
-            }
-          >
-            <SelectTrigger id="category">
-              <SelectValue placeholder="Select category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="food">Food & Dining</SelectItem>
-              <SelectItem value="transportation">Transportation</SelectItem>
-              <SelectItem value="entertainment">Entertainment</SelectItem>
-              <SelectItem value="utilities">Utilities</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="notes">Notes</Label>
-          <Textarea
-            id="notes"
-            placeholder="Enter any additional notes"
-            value={formData.notes}
-            onChange={(e) =>
-              setFormData({ ...formData, notes: e.target.value })
-            }
-          />
-        </div>
-
-        <Button type="submit" className="w-full">
-          Scan and Process Receipt
-        </Button>
-      </form>
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <Label htmlFor="merchantName">Merchant</Label>
+              <Input id="merchantName" placeholder="Enter merchant name" />
+            </div>
+            <div>
+              <Label htmlFor="amount">Amount</Label>
+              <Input
+                id="amount"
+                placeholder="Enter amount"
+                type="number"
+                step="0.01"
+              />
+            </div>
+          </div>
+          <div>
+            <Label htmlFor="category">Category</Label>
+            <Select>
+              <SelectTrigger id="category">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="food">
+                  <div className="flex items-center">
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Food & Dining
+                  </div>
+                </SelectItem>
+                <SelectItem value="transportation">
+                  <div className="flex items-center">
+                    <Car className="w-4 h-4 mr-2" />
+                    Transportation
+                  </div>
+                </SelectItem>
+                <SelectItem value="entertainment">
+                  <div className="flex items-center">
+                    <Film className="w-4 h-4 mr-2" />
+                    Entertainment
+                  </div>
+                </SelectItem>
+                <SelectItem value="utilities">
+                  <div className="flex items-center">
+                    <Zap className="w-4 h-4 mr-2" />
+                    Utilities
+                  </div>
+                </SelectItem>
+                <SelectItem value="other">
+                  <div className="flex items-center">
+                    <MoreHorizontal className="w-4 h-4 mr-2" />
+                    Other
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Button type="submit" className="w-full">
+            Scan and Process Receipt
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

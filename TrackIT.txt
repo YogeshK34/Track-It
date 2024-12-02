@@ -1,5 +1,0 @@
-(Done)    1: When deleting a transaction expense, it is not subtracting the amount from SAVINGS section 
-(OnGoing) 2: If Possible add more features to the application dashboard 
-
-3: When adding amounts to Saving's it should be subtracted from the Income's tab 
-

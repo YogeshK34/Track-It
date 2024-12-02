@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -83,6 +81,7 @@ export function SmartBudgeting() {
 
   return (
     <div className="p-8 space-y-8">
+      {/* Header and month selector */}
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold">Smart Budget</h2>
@@ -102,6 +101,7 @@ export function SmartBudgeting() {
         </Select>
       </div>
 
+      {/* Budget summary cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -146,6 +146,7 @@ export function SmartBudgeting() {
         </Card>
       </div>
 
+      {/* Budget categories and recent transactions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
@@ -162,11 +163,9 @@ export function SmartBudgeting() {
                   </span>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <motion.div
+                  <div
                     className={`h-full ${category.color}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${category.percentage}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
+                    style={{ width: `${category.percentage}%` }}
                   />
                 </div>
               </div>
@@ -182,13 +181,7 @@ export function SmartBudgeting() {
           <CardContent>
             <div className="space-y-6">
               {recentTransactions.map((transaction, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center justify-between"
-                >
+                <div key={index} className="flex items-center justify-between">
                   <div className="space-y-1">
                     <p className="font-medium">{transaction.name}</p>
                     <p className="text-sm text-muted-foreground">
@@ -203,7 +196,7 @@ export function SmartBudgeting() {
                     {transaction.amount > 0 ? "+" : ""}$
                     {Math.abs(transaction.amount).toFixed(2)}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </CardContent>

@@ -12,10 +12,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Camera, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+
+interface FormData {
+  receiptImage: File | null;
+  merchantName: string;
+  amount: string;
+  date: string;
+  category: string;
+  notes: string;
+}
 
 export function SmartReceiptScanningForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     receiptImage: null,
     merchantName: "",
     amount: "",
@@ -24,16 +33,15 @@ export function SmartReceiptScanningForm() {
     notes: "",
   });
 
-  const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
       setFormData({ ...formData, receiptImage: file });
     }
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Here you would typically send the form data to your backend
     console.log("Form submitted:", formData);
   };
 

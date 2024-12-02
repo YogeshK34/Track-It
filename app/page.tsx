@@ -2,13 +2,12 @@ import Link from "next/link";
 import { Button } from "../components/ui/button";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import Features from "../components/features/Features";
+import Features from "@/components/features/Features";
 
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-background via-background to-muted/50 overflow-hidden">
       <Header />
-
       <section className="pt-32 pb-20 px-4 relative">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
@@ -43,22 +42,9 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Features section */}
       <Features />
-
-      <section id="testimonials" className="py-24 bg-muted/50 relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-foreground">
-              Loved by thousands
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              See what our users have to say about their experience with
-              TrackIt.
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* Footer section */}
       <footer className="border-t border-border/40 bg-background/80 backdrop-blur-lg">
         <Footer />
       </footer>

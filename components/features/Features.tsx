@@ -1,35 +1,32 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { SmartBudgeting } from "./smart-budgeting";
 import { BankSyncForm } from "./bank-sync-form";
 import { SmartReceiptScanningForm } from "./smart-receipt-form";
 
-export default function Features() {
-  const features = [
-    {
-      id: "receipt",
-      title: "Smart Receipt Scanning",
-      description:
-        "Instantly capture and process receipts with our AI-powered scanner.",
-      component: SmartReceiptScanningForm,
-    },
-    {
-      id: "budget",
-      title: "Smart Budgeting",
-      description:
-        "Track, analyze, and optimize your spending with intelligent insights.",
-      component: SmartBudgeting,
-    },
-    {
-      id: "bank",
-      title: "Real-time Bank Sync",
-      description:
-        "Securely connect your accounts for up-to-the-minute financial data.",
-      component: BankSyncForm,
-    },
-  ];
+export const features = [
+  {
+    id: "receipt",
+    title: "Smart Receipt Scanning",
+    description:
+      "Instantly capture and process receipts with our AI-powered scanner.",
+    component: SmartReceiptScanningForm,
+  },
+  {
+    id: "budget",
+    title: "Smart Budgeting",
+    description:
+      "Track, analyze, and optimize your spending with intelligent insights.",
+    component: SmartBudgeting,
+  },
+  {
+    id: "bank",
+    title: "Real-time Bank Sync",
+    description:
+      "Securely connect your accounts for up-to-the-minute financial data.",
+    component: BankSyncForm,
+  },
+];
 
+export default function Features() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -42,39 +39,30 @@ export default function Features() {
         </p>
 
         {features.map((feature, index) => (
-          <motion.div
-            key={feature.id}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
-            className="mb-24"
+          <div
+            key="id"
+            className={`flex flex-col lg:flex-row items-center ${
+              index % 2 === 0 ? "lg:flex-row-reverse" : ""
+            }`}
           >
-            <div
-              className={`flex flex-col lg:flex-row items-center ${
-                index % 2 === 0 ? "lg:flex-row-reverse" : ""
-              }`}
-            >
-              {/* Left/Right Image */}
-              <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                  <feature.component />
-                </div>
-              </div>
-
-              {/* Text Block Centered */}
-              <div className="w-full lg:w-1/2 px-4 flex flex-col justify-center text-center">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  {feature.title}
-                </h2>
-                <p className="text-xl text-gray-600 mb-6">
-                  {feature.description}
-                </p>
-                <button className="bg- text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500">
-                  Learn More
-                </button>
+            <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <feature.component />
               </div>
             </div>
-          </motion.div>
+
+            <div className="w-full lg:w-1/2 px-4 flex flex-col justify-center text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                {feature.title}
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                {feature.description}
+              </p>
+              <button className="bg- text-white py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500">
+                Learn More
+              </button>
+            </div>
+          </div>
         ))}
       </div>
     </div>
